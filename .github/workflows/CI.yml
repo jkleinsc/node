@@ -39,6 +39,14 @@ jobs:
         run: npx envinfo
       - name: Build
         run: ./configure && make -j8
+  build-arm64:
+    runs-on: [self-hosted, linux, ARM64]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Environment Information
+        run: npx envinfo
+      - name: Build
+        run: ./configure && make -j2
   lint-addon-docs:
     runs-on: ubuntu-latest
     steps:
