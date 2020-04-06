@@ -21,8 +21,7 @@ jobs:
         run: npx envinfo
       - name: Try to run /usr/bin/bash.exe through node        
         run: |
-          node --version
-          node testbash.js
+          node .\test\parallel\test-child-process-exec-any-shells-windows.js
         continue-on-error: true
       - name: Make sure git-bash is initialized
         shell: bash
@@ -31,7 +30,6 @@ jobs:
         continue-on-error: true
       - name: Try to run /usr/bin/bash.exe through node        
         run: |
-          node --version
-          node testbash.js
+          node .\test\parallel\test-child-process-exec-any-shells-windows.js
         if: always()
         continue-on-error: true

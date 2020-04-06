@@ -16,8 +16,14 @@ const tmpPath = `${tmpdir.path}\\path with spaces`;
 fs.mkdirSync(tmpPath);
 
 const test = (shell) => {
+  console.log(`Testing: ${shell}`);
   cp.exec('echo foo bar', { shell: shell },
           common.mustCall((error, stdout, stderror) => {
+            if (error) {
+              console.log('Got error: ', stdout, stderror);
+            } else {
+              console.log(`"${shell}" excecuted successfully`);
+            }
             assert.ok(!error && !stderror);
             assert.ok(stdout.includes('foo') && stdout.includes('bar'));
           }));
@@ -59,6 +65,7 @@ cp.exec('where bash', common.mustCall((error, stdout) => {
   if (error) {
     return;
   }
+  console.log(`Found bash at: ${stdout}`);
   const lines = stdout.trim().split(/[\r\n]+/g);
   for (let i = 0; i < lines.length; ++i) {
     const bashPath = lines[i].trim();
