@@ -10,18 +10,28 @@ jobs:
   test-git-bash:
     runs-on: windows-latest
     steps:
-      - name: Try to run /usr/bin/bash.exe
-        shell: cmd
-        run: | 
-          "c:\Program Files\git\usr\bin\bash.exe"
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v1
+        with:
+          PYTHON_VERSION: ${{ env.PYTHON_VERSION }}
+      - name: Install deps
+        run: choco install nasm
+      - name: Environment Information
+        run: npx envinfo
+      - name: Try to run /usr/bin/bash.exe through node        
+        run: |
+          node --version
+          node testbash.js
         continue-on-error: true
       - name: Make sure git-bash is initialized
-        run: git-bash -c exit
+        shell: bash
+        run: echo bash initialized
         if: always()
         continue-on-error: true
-      - name: Try to again run /usr/bin/bash.exe
-        shell: cmd
-        run: | 
-          "c:\Program Files\git\usr\bin\bash.exe"
-        continue-on-error: true
+      - name: Try to run /usr/bin/bash.exe through node        
+        run: |
+          node --version
+          node testbash.js
         if: always()
+        continue-on-error: true
