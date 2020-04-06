@@ -1,0 +1,27 @@
+name: Figure out git-bash on Windows
+
+on: [push, pull_request]
+
+env:
+  PYTHON_VERSION: 3.8
+  FLAKY_TESTS: dontcare
+
+jobs:
+  test-git-bash:
+    runs-on: windows-latest
+    steps:
+      - name: Try to run /usr/bin/bash.exe
+        shell: cmd
+        run: | 
+          "c:\Program Files\git\usr\bin\bash.exe"
+        continue-on-error: true
+      - name: Make sure git-bash is initialized
+        run: git-bash -c exit
+        if: always()
+        continue-on-error: true
+      - name: Try to again run /usr/bin/bash.exe
+        shell: cmd
+        run: | 
+          "c:\Program Files\git\usr\bin\bash.exe"
+        continue-on-error: true
+        if: always()

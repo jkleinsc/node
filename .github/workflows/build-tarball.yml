@@ -85,6 +85,9 @@ jobs:
           7z x *.tar -ttar
       - name: Install deps
         run: choco install nasm
+      - name: Make sure git-bash is initialized
+        run: |          
+          git-bash -c exit
       - name: Build
         run: |
           $env:DEBUG_HELPER=1 
@@ -97,8 +100,7 @@ jobs:
       - name: "Test JS Suites"
         shell: cmd
         run: |
-          set DEBUG_HELPER=1
-          set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
+          set DEBUG_HELPER=1          
           ./vcbuild.bat release noprojgen nobuild ignore-flaky test-ci-js
       - name: "Test C++ Suites"
         shell: cmd
