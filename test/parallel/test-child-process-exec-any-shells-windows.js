@@ -20,7 +20,8 @@ const test = (shell) => {
   cp.exec('echo foo bar', { shell: shell },
           common.mustCall((error, stdout, stderror) => {
             if (error) {
-              console.log('Got error: ', stdout, stderror);
+              console.log(`"${shell}" failed stdout was: ${stdout}`);
+              console.log(`"${shell}" failed stderror was: ${stderror}`);
             } else {
               console.log(`"${shell}" excecuted successfully`);
             }

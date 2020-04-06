@@ -19,17 +19,9 @@ jobs:
         run: choco install nasm
       - name: Environment Information
         run: npx envinfo
-      - name: Try to run /usr/bin/bash.exe through node        
+      - name: Dump env vars
+        run: |
+          ls env:
+      - name: Try to run parallel/test-child-process-exec-any-shells-windows
         run: |
           node .\test\parallel\test-child-process-exec-any-shells-windows.js
-        continue-on-error: true
-      - name: Make sure git-bash is initialized
-        shell: bash
-        run: echo bash initialized
-        if: always()
-        continue-on-error: true
-      - name: Try to run /usr/bin/bash.exe through node        
-        run: |
-          node .\test\parallel\test-child-process-exec-any-shells-windows.js
-        if: always()
-        continue-on-error: true
