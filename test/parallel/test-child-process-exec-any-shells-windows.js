@@ -33,6 +33,7 @@ const testCopy = (shellName, shellPath) => {
   // Copy the executable to a path with spaces, to ensure there are no issues
   // related to quoting of argv0
   const copyPath = `${tmpPath}\\${shellName}`;
+  console.log(`Copying ${shellPath} to ${copyPath}`);
   fs.copyFileSync(shellPath, copyPath);
   test(copyPath);
 };

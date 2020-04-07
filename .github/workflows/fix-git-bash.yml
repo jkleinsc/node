@@ -19,9 +19,9 @@ jobs:
         run: choco install nasm
       - name: Environment Information
         run: npx envinfo
-      - name: Dump env vars
+      - name: Dump path
         run: |
-          ls env:
+          echo $env:Path
       - name: Try to run parallel/test-child-process-exec-any-shells-windows
         run: |
           node .\test\parallel\test-child-process-exec-any-shells-windows.js
