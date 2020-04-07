@@ -2,19 +2,19 @@ name: Figure out git-bash on Windows
 
 on: [push, pull_request]
 
-env:
-  PYTHON_VERSION: 3.8
-  FLAKY_TESTS: dontcare
+
 
 jobs:
   test-git-bash:
+    env:
+      FLAKY_TESTS: dontcare
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Python ${{ env.PYTHON_VERSION }}
+      - name: Set up Python 2.7
         uses: actions/setup-python@v1
         with:
-          PYTHON_VERSION: ${{ env.PYTHON_VERSION }}
+          PYTHON_VERSION: 2.7
       - name: Install deps
         run: choco install nasm
       - name: Environment Information
