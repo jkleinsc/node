@@ -34,7 +34,7 @@ const testCopy = (shellName, shellPath) => {
   // related to quoting of argv0
   const copyPath = `${tmpPath}\\${shellName}`;
   console.log(`Linking ${shellPath} to ${copyPath}`);
-  fs.symlinkSync(copyPath, shellPath);
+  fs.symlinkSync(shellPath, copyPath);
   test(copyPath);
 };
 
