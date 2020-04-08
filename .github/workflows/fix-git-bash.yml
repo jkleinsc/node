@@ -26,7 +26,6 @@ jobs:
       - name: debug Copy out directory to checkout dir
         run: |
           dir $env:TAR_DIR\out
-          dir $env:GITHUB_WORKSPACE\out
           echo "Copying $env:TAR_DIR\out to $env:GITHUB_WORKSPACE\out"
       - name: Copy out directory to checkout dir
         run: |
