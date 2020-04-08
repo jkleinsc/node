@@ -30,6 +30,7 @@ jobs:
       - name: Copy out directory to checkout dir
         run: |
           Copy-Item -Path "$env:TAR_DIR\out" -Destination "$env:GITHUB_WORKSPACE\out" -Recurse
+          dir $env:GITHUB_WORKSPACE\out\Release
       - name: Install deps
         run: choco install nasm
       - name: Environment Information
