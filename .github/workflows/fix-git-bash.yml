@@ -15,10 +15,18 @@ jobs:
         uses: actions/setup-python@v1
         with:
            python-version: 2.7
-      - name: Check paths
+      - name: Create paths
         run: |
-          echo "GITHUB_WORKSPACE: $env:GITHUB_WORKSPACE"
-          dir $env:GITHUB_WORKSPACE
+          mkdir node-v14.0.0-nightly2020-04-08xxxx\out\Release -ea 0
+          cd node-v14.0.0-nightly2020-04-08xxxx\out\Release
+          dir > listing.txt
+          echo "::set-env name=TAR_DIR::$pwd"
+      - name: Copy out directory to checkout dir
+        run: |
+          dir $env:TAR_DIR\out
+          dir $env:GITHUB_WORKSPACE\out
+          echo "Copying $env:TAR_DIR\out to $env:GITHUB_WORKSPACE\out"
+          Copy-Item -Path "$env:TAR_DIR\out" -Destination "$env:GITHUB_WORKSPACE\out" -Recurse          
       - name: Install deps
         run: choco install nasm
       - name: Environment Information
