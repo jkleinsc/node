@@ -20,7 +20,9 @@ jobs:
           mkdir node-v14.0.0-nightly2020-04-08xxxx\out\Release -ea 0
           cd node-v14.0.0-nightly2020-04-08xxxx\out\Release
           dir > listing.txt
+          cd ..\..
           echo "::set-env name=TAR_DIR::$pwd"
+          echo "Dir is: $pwd"
       - name: debug Copy out directory to checkout dir
         run: |
           dir $env:TAR_DIR\out
